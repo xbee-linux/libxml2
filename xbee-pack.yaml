@@ -1,0 +1,32 @@
+schema-version: 1.0
+
+type: builder
+
+description: |
+  Le paquet libxml2 contient des bibliothèques et des utilitaires utilisés pour analyser des fichiers XML.
+
+  Programmes installés: xml2-config, xmlcatalog et xmllint
+  Bibliothèques installées: libxml2.so et libxml2mod.so (module Python3)
+  Répertoires installés: /usr/include/libxml2, /usr/lib/cmake/libxml2, /usr/share/doc/libxml2-2.9.13, /usr/share/doc/libxml2-python-2.9.13 et /usr/share/gtk-doc/html/libxml2
+  Descriptions courtes
+    xml2-config: détermine les drapeaux du compilateur et de l'éditeur de liens qui devraient être utilisés pour compiler et lier les programmes qui utilisent libxml2
+    xmlcatalog: est utilisé pour gérer et manipuler des catalogues XML et SGML
+    xmllint: analyse des fichiers XML et affiche les rapports (basés sur les options ci-dessus) pour détecter les erreurs dans le code XML
+    libxml2.so: fournit des fonctions aux programmes pour analyser des fichiers qui utilisent le format XML
+    libxml2mod.so: est l'interface pour que Python3 utilise libxml2.so
+
+in:
+  version: 2.9.13
+
+provision:
+  - url:
+      from: https://download.gnome.org/sources/libxml2/{{ majorVersion .pack.version }}.{{ minorVersion .pack.version }}/libxml2-{% version %}.tar.xz
+      todir: "{% xbeeSrc %}"
+
+build:
+  - shell:
+      cmds:
+        - ./configure --prefix=/usr --disable-static --with-history --with-python=/usr/bin/python3
+        - make
+        - make install DESTDIR={% xbeeOut %}
+      directory: "{% xbeeSrc %}/libxml2-{% version %}"
