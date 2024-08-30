@@ -16,7 +16,8 @@ description: |
     libxml2mod.so: est l'interface pour que Python3 utilise libxml2.so
 
 var:
-  version: 2.9.13
+  xbee:
+    version: 2.9.13
 
 provision:
   - url:
