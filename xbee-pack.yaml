@@ -21,7 +21,7 @@ var:
 
 provision:
   - url:
-      from: https://download.gnome.org/sources/libxml2/{{ majorVersion .version }}.{{ minorVersion .version }}/libxml2-{{ .version }}.tar.xz
+      from: https://download.gnome.org/sources/libxml2/{{ majorVersion .xbee.version }}.{{ minorVersion .xbee.version }}/libxml2-{{ .xbee.version }}.tar.xz
       todir: "{{ .xbee.src }}"
 
 build:
@@ -30,4 +30,4 @@ build:
         - ./configure --prefix=/usr --disable-static --with-history --with-python=/usr/bin/python3
         - make
         - make install DESTDIR={{ .xbee.out }}
-      directory: "{{ .xbee.src }}/libxml2-{{ .version }}"
+      directory: "{{ .xbee.src }}/libxml2-{{ .xbee.version }}"
