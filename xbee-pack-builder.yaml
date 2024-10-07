@@ -1,7 +1,5 @@
 schema-version: 1.0
 
-type: builder
-
 description: |
   Le paquet libxml2 contient des bibliothèques et des utilitaires utilisés pour analyser des fichiers XML.
 
